@@ -1,0 +1,35 @@
+CREATE DATABASE IF NOT EXISTS Week9CodingAssignment;
+USE Week9CodingAssignment;
+
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS comment;
+DROP TABLE IF EXISTS user;
+
+CREATE TABLE user(
+	id INT(11) NOT NULL AUTO_INCREMENT,
+	user_name VARCHAR(15) NOT NULL,
+	email VARCHAR(40) NOT NULL,
+	password VARCHAR(15) NOT NULL,
+	age INT(3),
+	PRIMARY KEY (id)
+);
+CREATE TABLE post (
+	id INT(99) NOT NULL AUTO_INCREMENT,
+	user_id INT(11) NOT NULL,
+	post_content VARCHAR(5000) NOT NULL,
+	time_posted DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES user(id)
+);
+CREATE TABLE comment (
+	id INT(99) NOT NULL AUTO_INCREMENT,
+	user_id INT(11) NOT NULL,
+	post_id INT(99) NOT NULL,
+	comment_content VARCHAR(3000) NOT NULL,
+	time_posted DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	FOREIGN KEY (user_id) REFERENCES user(id),
+	FOREIGN KEY (post_id) REFERENCES post(id)
+);
+
+
